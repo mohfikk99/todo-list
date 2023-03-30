@@ -1,0 +1,32 @@
+###
+POST https://todo.api.devcode.gethired.id/todo-items?activity_group_id=54913
+Content-Type: application/json
+
+{
+      "title": "jika",
+      "activity_group_id": 54913,
+      "is_active": 1,
+      "priority": "low"
+}
+
+###
+GET https://todo.api.devcode.gethired.id/todo-items?activity_group_id=54912
+
+
+###
+GET  https://todo.api.devcode.gethired.id/todo-items?id=40744
+
+###
+POST https://todo.api.devcode.gethired.id/activity-groups
+Content-Type: application/json
+
+{
+    "title": "passsssssssssssssss"
+}
+
+###
+GET https://todo.api.devcode.gethired.id/activity-groups
+
+###
+DELETE https://todo.api.devcode.gethired.id/activity-groups?id=54913
+
