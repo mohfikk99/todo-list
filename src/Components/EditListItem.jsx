@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, message } from 'antd'
+import { Form, Input } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import axios from 'axios';
 
@@ -10,21 +10,9 @@ export default function EditListItem({id}) {
   })
   const [update, setUpdate] = useState(false)
 
-    const [messageApi, contextHolder] = message.useMessage();
-    const success = () => {
-        messageApi.open({
-        type: "success",
-        content: "Add Campaign successfully!",
-        });
-    };
-
     const Submit = (ids) => {
           axios.patch(`https://todo.api.devcode.gethired.id/todo-items?id=${ids}`, data)
-            .then((res) => {
-              console.log(res);
-              success();
-            })
-            setUpdate(false)
+          setUpdate(false)
     }
 
     
@@ -35,9 +23,6 @@ export default function EditListItem({id}) {
           .get(`https://todo.api.devcode.gethired.id/todo-items?id=${id}`)
           .then((res) => {
             setTitle(res?.data?.data[0]?.title)
-            console.log('====================================');
-            console.log(res?.data?.data[0]?.title);
-            console.log('====================================');
         })
       };
       fetchDataActivity();
@@ -47,7 +32,6 @@ export default function EditListItem({id}) {
     <>
         {update ? (
           <Form className="login-form">
-            {contextHolder}
           <Form.Item
             name="title"
             rules={[{ required: true, message: "title is required!" }]}
@@ -62,9 +46,13 @@ export default function EditListItem({id}) {
           <EditOutlined onClick={() => Submit(id)} />
           </Form>
         ) : (
-          <div className='section'>
-            <h3 className='mr-5'>{title}</h3>
-            <EditOutlined onClick={() => setUpdate(true)} />
+          <div className='row' >
+            <div className='col'>
+              <h3 className='mr-5'>{title}</h3>
+            </div>
+            <div className='col'>
+             <EditOutlined onClick={() => setUpdate(true)} />
+            </div>
           </div>
         )}
       

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, message } from 'antd'
+import { Form, Input } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import axios from 'axios';
 
@@ -10,20 +10,8 @@ export default function EditActivity({id}) {
   })
   const [update, setUpdate] = useState(false)
 
-    const [messageApi, contextHolder] = message.useMessage();
-    const success = () => {
-        messageApi.open({
-        type: "success",
-        content: "Add Campaign successfully!",
-        });
-    };
-
     const Submit = () => {
           axios.patch(`https://todo.api.devcode.gethired.id/activity-groups/${id}`, data)
-            .then((res) => {
-              console.log(res);
-              success();
-            })
             setUpdate(false)
     }
 

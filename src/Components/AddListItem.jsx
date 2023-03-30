@@ -1,3 +1,4 @@
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, Select } from 'antd'
 import axios from 'axios';
 import React, { useState } from 'react'
@@ -11,21 +12,19 @@ export default function AddListItem({id}) {
         priority: ""
   })
   const showModal = () => {setIsModalOpen(true)};
+  const handleCancel = () => {setIsModalOpen(false)};
   const handleOk = () => {
     axios.post(`https://todo.api.devcode.gethired.id/todo-items?activity_group_id=${id}`, data)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => console.log(err));
     setIsModalOpen(false);
   };
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>
-        Open Modal
+      <Button type="primary" onClick={showModal}>
+        <PlusOutlined />
+        Tambah
       </Button>
-      <Modal title="Tambah List Item" open={isModalOpen} onOk={handleOk}>
+      <Modal title="Tambah List Item" open={isModalOpen} onOk={handleOk} onCance={handleCancel}>
         <Form className="login-form">
           <Form.Item
             name="title"

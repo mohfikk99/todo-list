@@ -16,21 +16,13 @@ export default function DetailDashboard() {
       await axios
         .get(`https://todo.api.devcode.gethired.id/todo-items?activity_group_id=${id}`)
         .then((res) => {
-          console.log(res);
           setData(res?.data?.data);
-          console.log('====================================');
-          console.log(res.data.data);
-          console.log('====================================');
         })
-        .catch((err) => console.log(err));
     };
     fetchDataActivity();
   }, [id]);
 
   const Delete = async (ids) => {
-    console.log('====================================');
-    console.log(ids);
-    console.log('====================================');
     await axios
     .delete(`https://todo.api.devcode.gethired.id/todo-items?id=${ids}`)
   }
@@ -44,9 +36,15 @@ export default function DetailDashboard() {
 
         {data.length !== 0 ? (
           data.map((item) => (
-            <Card key={item.id} className="section">
-              <EditListItem id={item.id}/>
-              <DeleteOutlined onClick={() => Delete(item.id)} />
+            <Card key={item.id} className="text-center mt-5">
+              <div className='row'>
+                <div className='col'>
+                  <EditListItem id={item.id}/>
+                </div>
+                <div className='col'>
+                  <DeleteOutlined onClick={() => Delete(item.id)} />
+                </div>
+              </div>
             </Card>
             ))
         ) : (

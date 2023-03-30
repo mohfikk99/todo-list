@@ -19,10 +19,9 @@ export default function AddActivity() {
           };
           axios.post("https://todo.api.devcode.gethired.id/activity-groups", data)
             .then((res) => {
-              console.log(res);
               success();
             })
-            .catch((err) => console.log(err));
+
     }
 
   return (
